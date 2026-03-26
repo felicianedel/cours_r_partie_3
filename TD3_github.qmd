@@ -97,5 +97,12 @@ trouver_trajet_max(df_b_788)
 ```
 # Question 7
 
+```{r}
+trouver_trajet_max(df_velo)
+```
+Le 10 février 2025 à la boucle 747 - Chemin de halage Torière vers Nord, avec 345 780 passages.
+
+# Question 8
+
 
 
