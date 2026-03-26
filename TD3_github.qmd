@@ -100,7 +100,22 @@ trouver_trajet_max(df_b_788)
 ```{r}
 trouver_trajet_max(df_velo)
 ```
-Le 10 février 2025 à la boucle 747 - Chemin de halage Torière vers Nord, avec 345 780 passages.
+Le 10 février 2025 à la boucle 747 - Chemin de halage Torière vers Nord, avec 345 780 passages. c'est énorme !!
+
+```{r}
+quantile(df_velo$Total)
+```
+On voit que c'est bizarre, les données sont pas nettoyées
+
+```{r}
+df_velo |>
+  slice_max(order_by = Total, n = 10)
+```
+C'est très bizarre
+
+On peut améliorer le filtre anomalie
+
+VOIR CORRECTION
 
 # Question 8
 
@@ -124,3 +139,23 @@ calcul_distribution_semaine(df_d_0928)
 ```
 
 # Question 9
+
+```{r}
+plot_distribution_semaine <- function(df){
+  calcul_distribution_semaine(df)
+  graph <- barplot(tapply(df$Total,
+                          df$Jour.de.la.semaine,sum),
+                   xlab="Jour de la semaine",
+                   ylab="Nombre de trajes par jour",
+                   col="royalblue")
+  return(graph)
+  }
+```
+
+```{r}
+plot_distribution_semaine(df_d_0917)
+plot_distribution_semaine(df_d_0928)
+plot_distribution_semaine(df_b_673)
+plot_distribution_semaine(df_b_788)
+```
+
