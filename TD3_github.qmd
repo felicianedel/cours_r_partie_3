@@ -15,17 +15,31 @@ df_velo <- read.csv("data/velo.csv", sep=";")
 
 Deux boucles favorites :
 ```{r}
-df_b_788 <- df_velo[df_velo$boucle == 788, ]
-df_b_673 <- df_velo[df_velo$boucle == 673, ]
+df_b_788 <- df_velo[df_velo$Numéro.de.boucle == 788, ]
+df_b_673 <- df_velo[df_velo$Numéro.de.boucle == 673, ]
 ```
 
 Deux jours favoris:
 ```{r}
-df_d_0917 <- df_velo[df_velo$date == "2025-09-17", ]
-df_d_0928 <- df_velo[df_velo$date == "2025-09-28", ]
+df_d_0917 <- df_velo[df_velo$Jour == "2025-09-17", ]
+df_d_0928 <- df_velo[df_velo$Jour == "2025-09-28", ]
 ```
 
 
 # Question 3
+```{r}
+filtre_anomalie <- function(df){
+  df_filtre <- df[!(df$Probabilité.de.présence.d.anomalies =="Faible"|
+                    df$Probabilité.de.présence.d.anomalies =="Forte"),]
+    return(df_filtre)
+}
+```
 
+
+```{r}
+filtre_anomalie(df_d_0917)
+filtre_anomalie(df_d_0928)
+filtre_anomalie(df_b_788)
+filtre_anomalie(df_b_673)
+```
 
