@@ -1,0 +1,12 @@
+---
+title: "exo3_Github"
+format: html
+editor: visual
+---
+# ======= TD3 ========
+
+# Question 1 
+```{r}
+velo <- read.csv("data/velo.csv", sep=";")
+```
+
