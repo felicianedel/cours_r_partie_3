@@ -3,3 +3,29 @@ title: "TD4_github"
 format: html
 editor: visual
 ---
+
+# ======= TD4 ========
+
+# Question 1
+
+```{r}
+library(httr2)
+
+req <- request(
+  "https://data.nantesmetropole.fr/api/explore/v2.1/catalog/datasets/244400404_comptages-velo-nantes-metropole-boucles-comptage/records"
+) |>
+  req_url_query(limit = 100)
+
+resp <- req_perform(req)
+
+df_velo_info <- fromJSON(resp_body_string(resp))$results
+
+df_velo_info
+```
+
+
+
+
+
+
+
