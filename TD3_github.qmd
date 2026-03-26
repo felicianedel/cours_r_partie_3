@@ -55,7 +55,22 @@ compter_nombre_trajets(df_d_0928)
 compter_nombre_trajets(df_b_788)
 compter_nombre_trajets(df_b_673)
 ```
+# Question 5
+```{r}
+compter_nombre_boucle <- function(df){
+  nb_boucle<- length(unique(df$Boucle.de.comptage))
+  return(nb_boucle)
+}
+```
 
+```{r}
+compter_nombre_boucle(df_d_0917)
+compter_nombre_boucle(df_d_0928)
+compter_nombre_boucle(df_b_788)
+compter_nombre_boucle(df_b_673)
+```
+Oui c'était totalement prévisible.
 
+# Question 6
 
 
