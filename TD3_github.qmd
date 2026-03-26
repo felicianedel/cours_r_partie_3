@@ -5,9 +5,25 @@ editor: visual
 ---
 # ======= TD3 ========
 
-# Question 1 
+# Question 1
+Fallait faire tout le truc sur github, un commit et un push.
+
+# Question 2
 ```{r}
-velo <- read.csv("data/velo.csv", sep=";")
+df_velo <- read.csv("data/velo.csv", sep=";")
 ```
 
-udaufgaufgiguf
+Deux boucles favorites :
+```{r}
+df_b_788 <- df_velo[df_velo$boucle == 788, ]
+df_b_673 <- df_velo[df_velo$boucle == 673, ]
+```
+
+Deux jours favoris:
+```{r}
+df_d_0917 <- df_velo[df_velo$date == "2025-09-17", ]
+df_d_0928 <- df_velo[df_velo$date == "2025-09-28", ]
+```
+
+
+# Question 3
