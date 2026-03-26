@@ -104,5 +104,23 @@ Le 10 février 2025 à la boucle 747 - Chemin de halage Torière vers Nord, avec
 
 # Question 8
 
+```{r}
+library(dplyr)
+calcul_distribution_semaine <- function(df){
+  
+  nb_trajet <- df |>  
+    group_by(Jour.de.la.semaine) |> 
+    summarise(nb_trajets = sum(Total, na.rm = TRUE))
+  return(nb_trajet)
+}
 
+```
 
+```{r}
+calcul_distribution_semaine(df_b_673)
+calcul_distribution_semaine(df_b_788)
+calcul_distribution_semaine(df_d_0917)
+calcul_distribution_semaine(df_d_0928)
+```
+
+# Question 9
