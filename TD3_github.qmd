@@ -72,5 +72,30 @@ compter_nombre_boucle(df_b_673)
 Oui c'était totalement prévisible.
 
 # Question 6
+```{r}
+trouver_trajet_max <- function(df){
+  max <- which.max(df$Total)
+  nom <- df$Boucle.de.comptage[max]
+  jour <- df$Jour[max]
+  nb_passage <-df$Total[max]
+  
+  resultat <- data.frame(
+    nom=nom,
+    jour=jour,
+    nb_passage=nb_passage)
+    
+  
+  return(resultat)
+}
+```
+
+```{r}
+trouver_trajet_max(df_d_0917)
+trouver_trajet_max(df_d_0928)
+trouver_trajet_max(df_b_673)
+trouver_trajet_max(df_b_788)
+```
+# Question 7
+
 
 
