@@ -42,4 +42,20 @@ filtre_anomalie(df_d_0928)
 filtre_anomalie(df_b_788)
 filtre_anomalie(df_b_673)
 ```
+# Question 4
+```{r}
+compter_nombre_trajets <- function(df){
+  return(sum(df$Total))
+}
+```
+
+```{r}
+compter_nombre_trajets(df_d_0917)
+compter_nombre_trajets(df_d_0928)
+compter_nombre_trajets(df_b_788)
+compter_nombre_trajets(df_b_673)
+```
+
+
+
 
