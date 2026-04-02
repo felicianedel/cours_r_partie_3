@@ -127,9 +127,26 @@ trajets_par_heure
 library(dplyr)
 library(stringr)
 
-df_velo_clean <- df_velo_clean |>
+df_long <- df_long |>
   mutate(
     heure = as.numeric(str_extract(heure, "^\\d{2}"))
   )
 ```
+
+# === Question 8
+```{r}
+library(ggplot2)
+
+ggplot(trajets_par_heure, aes(x = heure, y = moyenne_trajets)) +
+  geom_line() +
+  geom_point() +
+  labs(
+    title = "Affluence moyenne par heure",
+    x = "Heure de la journée",
+    y = "Nombre moyen de trajets"
+  ) +
+  theme_minimal()
+```
+Les pics sont le matin vers 8h, et le soir vers 17h, ce qui correspond aux horaires de boulot.
+
 
