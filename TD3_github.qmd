@@ -3,30 +3,35 @@ title: "exo3_Github"
 format: html
 editor: visual
 ---
+
 # ======= TD3 ========
 
 # Question 1
+
 Fallait faire tout le truc sur github, un commit et un push.
 
 # Question 2
+
 ```{r}
 df_velo <- read.csv("data/velo.csv", sep=";")
 ```
 
 Deux boucles favorites :
+
 ```{r}
 df_b_788 <- df_velo[df_velo$Numéro.de.boucle == 788, ]
 df_b_673 <- df_velo[df_velo$Numéro.de.boucle == 673, ]
 ```
 
 Deux jours favoris:
+
 ```{r}
 df_d_0917 <- df_velo[df_velo$Jour == "2025-09-17", ]
 df_d_0928 <- df_velo[df_velo$Jour == "2025-09-28", ]
 ```
 
-
 # Question 3
+
 ```{r}
 filtre_anomalie <- function(df){
   df_filtre <- df[!(df$Probabilité.de.présence.d.anomalies =="Faible"|
@@ -35,14 +40,15 @@ filtre_anomalie <- function(df){
 }
 ```
 
-
 ```{r}
 filtre_anomalie(df_d_0917)
 filtre_anomalie(df_d_0928)
 filtre_anomalie(df_b_788)
 filtre_anomalie(df_b_673)
 ```
+
 # Question 4
+
 ```{r}
 compter_nombre_trajets <- function(df){
   return(sum(df$Total))
@@ -55,7 +61,9 @@ compter_nombre_trajets(df_d_0928)
 compter_nombre_trajets(df_b_788)
 compter_nombre_trajets(df_b_673)
 ```
+
 # Question 5
+
 ```{r}
 compter_nombre_boucle <- function(df){
   nb_boucle<- length(unique(df$Boucle.de.comptage))
@@ -69,9 +77,11 @@ compter_nombre_boucle(df_d_0928)
 compter_nombre_boucle(df_b_788)
 compter_nombre_boucle(df_b_673)
 ```
+
 Oui c'était totalement prévisible.
 
 # Question 6
+
 ```{r}
 trouver_trajet_max <- function(df){
   max <- which.max(df$Total)
@@ -95,22 +105,26 @@ trouver_trajet_max(df_d_0928)
 trouver_trajet_max(df_b_673)
 trouver_trajet_max(df_b_788)
 ```
+
 # Question 7
 
 ```{r}
 trouver_trajet_max(df_velo)
 ```
+
 Le 10 février 2025 à la boucle 747 - Chemin de halage Torière vers Nord, avec 345 780 passages. c'est énorme !!
 
 ```{r}
 quantile(df_velo$Total)
 ```
+
 On voit que c'est bizarre, les données sont pas nettoyées
 
 ```{r}
 df_velo |>
   slice_max(order_by = Total, n = 10)
 ```
+
 C'est très bizarre
 
 On peut améliorer le filtre anomalie
@@ -158,4 +172,3 @@ plot_distribution_semaine(df_d_0928)
 plot_distribution_semaine(df_b_673)
 plot_distribution_semaine(df_b_788)
 ```
-

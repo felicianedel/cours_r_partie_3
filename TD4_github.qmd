@@ -4,28 +4,52 @@ format: html
 editor: visual
 ---
 
+PAS A L'EXAMEN !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! TROP CHOUETTE C'EST LA FIESTA
+
 # ======= TD4 ========
 
-# Question 1
+# === Question 1
 
 ```{r}
 library(httr2)
 
-req <- request(
-  "https://data.nantesmetropole.fr/api/explore/v2.1/catalog/datasets/244400404_comptages-velo-nantes-metropole-boucles-comptage/records"
-) |>
-  req_url_query(limit = 100)
+req <- request("https://data.nantesmetropole.fr/api/explore/v2.1/catalog/datasets/") |>
+    req_url_path_append("244400404_comptages-velo-nantes-metropole-boucles-comptage/records") |>
+    req_url_query(limit= 100)
 
-resp <- req_perform(req)
+resp <- req_perform(req)  |> resp_body_json(simplifyVector = TRUE)
+df_velo_info  <- resp$results
+```
 
-df_velo_info <- fromJSON(resp_body_string(resp))$results
+# === Question 2
+
+```{r}
+req <- request("https://data.nantesmetropole.fr/api/explore/v2.1/catalog/datasets/") |>
+    req_url_path_append("244400404_comptages-velo-nantes-metropole/records") |>
+    req_url_query(limit= 100, refine = "boucle_num:880", refine = "boucle_num:881", refine = "jour:'2025-05'")
+
+resp <- req_perform(req)  |> resp_body_json(simplifyVector = TRUE)
+df_velo_sample  <- resp$results
 
 df_velo_info
 ```
+# === Question 3
 
+```{r}
+library(dplyr)
 
+df_velo_final <- df_velo_sample |>
+  left_join(df_velo_info, by = "boucle_num")
+```
 
+```{r}
+write.csv(df_velo_final, "data/df_velo_final.csv", row.names = FALSE)
+```
+# === Question 4
 
+```{r}
+
+```
 
 
 
