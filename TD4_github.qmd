@@ -48,8 +48,47 @@ write.csv(df_velo_final, "data/df_velo_final.csv", row.names = FALSE)
 # === Question 4
 
 ```{r}
+df_velo <- read.delim("data/df_velo_final.csv", sep = ",")
+```
 
+Convertir en tibble
+```{r}
+library(tibble)
+
+df_velo <- as_tibble(df_velo)
+```
+
+```{r}
+library(dplyr)
+
+df_velo_clean <- df_velo |>
+  filter(
+    !(probabilite_presence_anomalie %in% c("Fort", "Faible")),
+    total >= 0,
+    total <= 10000
+  )
+```
+
+# === Question 5
+
+```{r}
+library(dplyr)
+
+df_velo_clean <- df_velo_clean |>
+  mutate(
+    mois = format(as.Date(jour), "%B")
+  )
 ```
 
 
+```{r}
+trajets_par_mois <- df_velo_clean |>
+  group_by(mois) |>
+  summarise(
+    total_trajets = sum(total, na.rm = TRUE)
+  ) |>
+  arrange(total_trajets)
+
+trajets_par_mois
+```
 
