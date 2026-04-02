@@ -122,3 +122,14 @@ trajets_par_heure <- df_long |>
 trajets_par_heure
 ```
 
+# === Question 7
+```{r}
+library(dplyr)
+library(stringr)
+
+df_velo_clean <- df_velo_clean |>
+  mutate(
+    heure = as.numeric(str_extract(heure, "^\\d{2}"))
+  )
+```
+
