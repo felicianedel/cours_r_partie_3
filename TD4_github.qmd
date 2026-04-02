@@ -149,4 +149,29 @@ ggplot(trajets_par_heure, aes(x = heure, y = moyenne_trajets)) +
 ```
 Les pics sont le matin vers 8h, et le soir vers 17h, ce qui correspond aux horaires de boulot.
 
+# === Question 9
+
+```{r}
+library(dplyr)
+library(tidyr)
+
+df_long <- df_long |>
+  separate(
+    `boucle_libelle`,
+    into = c("numero", "boucle", "direction"),
+    sep = " ",
+    extra = "merge"
+  )
+```
+
+```{r}
+trajets_direction <- df_long |>
+  group_by(direction) |>
+  summarise(
+    total_trajets = sum(total, na.rm = TRUE)
+  ) |>
+  arrange(desc(total_trajets))
+
+trajets_direction
+```
 
