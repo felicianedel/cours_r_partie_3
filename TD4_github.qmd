@@ -91,4 +91,34 @@ trajets_par_mois <- df_velo_clean |>
 
 trajets_par_mois
 ```
+# === Question 6
+```{r}
+library(dplyr)
+library(tidyr)
+
+df_long <- df_velo_clean |>
+  pivot_longer(
+    cols = starts_with("X"),
+    names_to = "heure",
+    values_to = "nb_trajets"
+  )
+```
+
+```{r}
+df_long <- df_long |>
+  mutate(
+    heure = as.numeric(gsub("X", "", heure))
+  )
+```
+
+```{r}
+trajets_par_heure <- df_long |>
+  group_by(heure) |>
+  summarise(
+    moyenne_trajets = mean(nb_trajets, na.rm = TRUE)
+  ) |>
+  arrange(desc(moyenne_trajets))
+
+trajets_par_heure
+```
 
